@@ -1,0 +1,7 @@
+{
+  "determinism": {
+    "error": "matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 100 is different from 50)",
+    "all_passed": false
+  },
+  "memory_scaling": {
+    "sqrt_scaling_confirmed": 

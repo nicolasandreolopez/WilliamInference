@@ -1,0 +1,62 @@
+# GitHub Pages Configuration
+title: "Space-Efficient Neural Network Inference"
+description: "Making Large AI Models Accessible: O(√n) Memory Breakthrough"
+url: "https://williamsinference.github.io"
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Theme settings
+theme: minima
+
+# Custom settings
+author:
+  name: "William Inference Research"
+  email: "research@williamsinference.org"
+
+# SEO
+lang: en
+locale: en_US
+
+# Social
+github_username: williamsinference
+twitter_username: williamsinference
+
+# Analytics (optional)
+google_analytics: # Add your GA tracking ID if needed
+
+# Collections
+collections:
+  sections:
+    output: true
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+      author: "William Inference Research"
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - README.md
+  - package.json
+  - package-lock.json
+
+# Include
+include:
+  - _pages

@@ -1,0 +1,317 @@
+{
+  "total_tests": 7,
+  "passed_tests": 7,
+  "success_rate": 1.0,
+  "all_passed": true,
+  "detailed_results": [
+    {
+      "test_type": "identical_outputs",
+      "num_tests": 20,
+      "max_difference": 0.0,
+      "mean_difference": 0.0,
+      "passed": true,
+      "differences": [
+        {
+          "test_idx": 0,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 0.8808673874912538
+        },
+        {
+          "test_idx": 1,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 0.7619911482793805
+        },
+        {
+          "test_idx": 2,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 0.7221310427833274
+        },
+        {
+          "test_idx": 3,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 1.2064998223308456
+        },
+        {
+          "test_idx": 4,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 0.8886785083930229
+        },
+        {
+          "test_idx": 5,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 1.08060755676259
+        },
+        {
+          "test_idx": 6,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 0.9734775680974926
+        },
+        {
+          "test_idx": 7,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 0.9504714550714245
+        },
+        {
+          "test_idx": 8,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 1.391374732849209
+        },
+        {
+          "test_idx": 9,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 1.4336662958900381
+        },
+        {
+          "test_idx": 10,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 1.200146753820759
+        },
+        {
+          "test_idx": 11,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 1.1081966394050697
+        },
+        {
+          "test_idx": 12,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 1.3423834494259765
+        },
+        {
+          "test_idx": 13,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 0.9770733947969719
+        },
+        {
+          "test_idx": 14,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 0.6683787308309382
+        },
+        {
+          "test_idx": 15,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 1.1172898012946813
+        },
+        {
+          "test_idx": 16,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 0.715906023838068
+        },
+        {
+          "test_idx": 17,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 1.8977098340175338
+        },
+        {
+          "test_idx": 18,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 0.41215163593706944
+        },
+        {
+          "test_idx": 19,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 1.0538941569279026
+        }
+      ],
+      "checkpoint_indices": [
+        0,
+        2
+      ],
+      "network_params": 8160,
+      "network_name": "Small Network"
+    },
+    {
+      "test_type": "multiple_runs_same_input",
+      "num_runs": 10,
+      "max_difference": 0.0,
+      "passed": true,
+      "checkpoint_indices": [
+        0,
+        2
+      ],
+      "network_name": "Small Network"
+    },
+    {
+      "test_type": "identical_outputs",
+      "num_tests": 20,
+      "max_difference": 0.0,
+      "mean_difference": 0.0,
+      "passed": true,
+      "differences": [
+        {
+          "test_idx": 0,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 0.21573918003409662
+        },
+        {
+          "test_idx": 1,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 0.31309526619549344
+        },
+        {
+          "test_idx": 2,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 0.3442068655646618
+        },
+        {
+          "test_idx": 3,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 0.3712625767315776
+        },
+        {
+          "test_idx": 4,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 0.4292702216724171
+        },
+        {
+          "test_idx": 5,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 0.6394213611364636
+        },
+        {
+          "test_idx": 6,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 0.5574892400297488
+        },
+        {
+          "test_idx": 7,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 0.4080939015472378
+        },
+        {
+          "test_idx": 8,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 0.41835862089320447
+        },
+        {
+          "test_idx": 9,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 0.46109024259438475
+        },
+        {
+          "test_idx": 10,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 0.4777878525242863
+        },
+        {
+          "test_idx": 11,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 0.34407237048659894
+        },
+        {
+          "test_idx": 12,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 0.4197711568863767
+        },
+        {
+          "test_idx": 13,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 0.3176074559760718
+        },
+        {
+          "test_idx": 14,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 0.2773435228034098
+        },
+        {
+          "test_idx": 15,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 0.3686373749155706
+        },
+        {
+          "test_idx": 16,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 0.2712445475751274
+        },
+        {
+          "test_idx": 17,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 0.37622756994204865
+        },
+        {
+          "test_idx": 18,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 0.6080431561110973
+        },
+        {
+          "test_idx": 19,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "output_norm": 0.4717330647021769
+        }
+      ],
+      "checkpoint_indices": [
+        0,
+        2,
+        4,
+        6
+      ],
+      "network_params": 71710,
+      "network_name": "Medium Network"
+    },
+    {
+      "test_type": "multiple_runs_same_input",
+      "num_runs": 10,
+      "max_difference": 0.0,
+      "passed": true,
+      "checkpoint_indices": [
+        0,
+        2,
+        4,
+        6
+      ],
+      "network_name": "Medium Network"
+    },
+    {
+      "test_type": "different_checkpoint_strategies",
+      "num_strategies": 4,
+      "max_difference": 0.0,
+      "passed": true,
+      "strategy_results": [
+        {
+          "strategy_idx": 0,
+          "checkpoint_indices": [
+            0,
+            3,
+            6
+          ],
+          "max_diff": 0.0,
+          "passed": 

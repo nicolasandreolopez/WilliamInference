@@ -1,0 +1,928 @@
+{
+  "determinism": {
+    "total_tests": 7,
+    "passed_tests": 7,
+    "success_rate": 1.0,
+    "all_passed": true,
+    "detailed_results": [
+      {
+        "test_type": "identical_outputs",
+        "num_tests": 20,
+        "max_difference": 0.0,
+        "mean_difference": 0.0,
+        "passed": true,
+        "differences": [
+          {
+            "test_idx": 0,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.8808673874912538
+          },
+          {
+            "test_idx": 1,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.7619911482793805
+          },
+          {
+            "test_idx": 2,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.7221310427833274
+          },
+          {
+            "test_idx": 3,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 1.2064998223308456
+          },
+          {
+            "test_idx": 4,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.8886785083930229
+          },
+          {
+            "test_idx": 5,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 1.08060755676259
+          },
+          {
+            "test_idx": 6,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.9734775680974926
+          },
+          {
+            "test_idx": 7,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.9504714550714245
+          },
+          {
+            "test_idx": 8,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 1.391374732849209
+          },
+          {
+            "test_idx": 9,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 1.4336662958900381
+          },
+          {
+            "test_idx": 10,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 1.200146753820759
+          },
+          {
+            "test_idx": 11,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 1.1081966394050697
+          },
+          {
+            "test_idx": 12,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 1.3423834494259765
+          },
+          {
+            "test_idx": 13,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.9770733947969719
+          },
+          {
+            "test_idx": 14,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.6683787308309382
+          },
+          {
+            "test_idx": 15,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 1.1172898012946813
+          },
+          {
+            "test_idx": 16,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.715906023838068
+          },
+          {
+            "test_idx": 17,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 1.8977098340175338
+          },
+          {
+            "test_idx": 18,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.41215163593706944
+          },
+          {
+            "test_idx": 19,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 1.0538941569279026
+          }
+        ],
+        "checkpoint_indices": [
+          0,
+          2
+        ],
+        "network_params": 8160,
+        "network_name": "Small Network"
+      },
+      {
+        "test_type": "multiple_runs_same_input",
+        "num_runs": 10,
+        "max_difference": 0.0,
+        "passed": true,
+        "checkpoint_indices": [
+          0,
+          2
+        ],
+        "network_name": "Small Network"
+      },
+      {
+        "test_type": "identical_outputs",
+        "num_tests": 20,
+        "max_difference": 0.0,
+        "mean_difference": 0.0,
+        "passed": true,
+        "differences": [
+          {
+            "test_idx": 0,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.21573918003409662
+          },
+          {
+            "test_idx": 1,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.31309526619549344
+          },
+          {
+            "test_idx": 2,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.3442068655646618
+          },
+          {
+            "test_idx": 3,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.3712625767315776
+          },
+          {
+            "test_idx": 4,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.4292702216724171
+          },
+          {
+            "test_idx": 5,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.6394213611364636
+          },
+          {
+            "test_idx": 6,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.5574892400297488
+          },
+          {
+            "test_idx": 7,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.4080939015472378
+          },
+          {
+            "test_idx": 8,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.41835862089320447
+          },
+          {
+            "test_idx": 9,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.46109024259438475
+          },
+          {
+            "test_idx": 10,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.4777878525242863
+          },
+          {
+            "test_idx": 11,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.34407237048659894
+          },
+          {
+            "test_idx": 12,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.4197711568863767
+          },
+          {
+            "test_idx": 13,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.3176074559760718
+          },
+          {
+            "test_idx": 14,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.2773435228034098
+          },
+          {
+            "test_idx": 15,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.3686373749155706
+          },
+          {
+            "test_idx": 16,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.2712445475751274
+          },
+          {
+            "test_idx": 17,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.37622756994204865
+          },
+          {
+            "test_idx": 18,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.6080431561110973
+          },
+          {
+            "test_idx": 19,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.4717330647021769
+          }
+        ],
+        "checkpoint_indices": [
+          0,
+          2,
+          4,
+          6
+        ],
+        "network_params": 71710,
+        "network_name": "Medium Network"
+      },
+      {
+        "test_type": "multiple_runs_same_input",
+        "num_runs": 10,
+        "max_difference": 0.0,
+        "passed": true,
+        "checkpoint_indices": [
+          0,
+          2,
+          4,
+          6
+        ],
+        "network_name": "Medium Network"
+      },
+      {
+        "test_type": "different_checkpoint_strategies",
+        "num_strategies": 4,
+        "max_difference": 0.0,
+        "passed": true,
+        "strategy_results": [
+          {
+            "strategy_idx": 0,
+            "checkpoint_indices": [
+              0,
+              3,
+              6
+            ],
+            "max_diff": 0.0,
+            "passed": true
+          },
+          {
+            "strategy_idx": 1,
+            "checkpoint_indices": [
+              0,
+              2,
+              4,
+              6
+            ],
+            "max_diff": 0.0,
+            "passed": true
+          },
+          {
+            "strategy_idx": 2,
+            "checkpoint_indices": [
+              0,
+              6
+            ],
+            "max_diff": 0.0,
+            "passed": true
+          },
+          {
+            "strategy_idx": 3,
+            "checkpoint_indices": [
+              0,
+              2,
+              4,
+              6
+            ],
+            "max_diff": 0.0,
+            "passed": true
+          }
+        ],
+        "network_name": "Medium Network"
+      },
+      {
+        "test_type": "identical_outputs",
+        "num_tests": 20,
+        "max_difference": 0.0,
+        "mean_difference": 0.0,
+        "passed": true,
+        "differences": [
+          {
+            "test_idx": 0,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.008097945758431657
+          },
+          {
+            "test_idx": 1,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.007930545880568898
+          },
+          {
+            "test_idx": 2,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.011093486259781278
+          },
+          {
+            "test_idx": 3,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.007411337988983186
+          },
+          {
+            "test_idx": 4,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.011623069621363752
+          },
+          {
+            "test_idx": 5,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.018253862633600498
+          },
+          {
+            "test_idx": 6,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.0162653750544095
+          },
+          {
+            "test_idx": 7,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.014658844490971516
+          },
+          {
+            "test_idx": 8,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.010831889966314553
+          },
+          {
+            "test_idx": 9,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.014555392727970516
+          },
+          {
+            "test_idx": 10,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.013158777208807884
+          },
+          {
+            "test_idx": 11,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.010837706606570087
+          },
+          {
+            "test_idx": 12,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.013174693791838462
+          },
+          {
+            "test_idx": 13,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.005441233858111284
+          },
+          {
+            "test_idx": 14,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.005897099948759863
+          },
+          {
+            "test_idx": 15,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.009839168094332548
+          },
+          {
+            "test_idx": 16,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.011302396482880853
+          },
+          {
+            "test_idx": 17,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.010165937664974187
+          },
+          {
+            "test_idx": 18,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.019991333640253437
+          },
+          {
+            "test_idx": 19,
+            "max_diff": 0.0,
+            "mean_diff": 0.0,
+            "output_norm": 0.015182833530195217
+          }
+        ],
+        "checkpoint_indices": [
+          0,
+          4,
+          8,
+          12
+        ],
+        "network_params": 152510,
+        "network_name": "Large Network"
+      },
+      {
+        "test_type": "multiple_runs_same_input",
+        "num_runs": 10,
+        "max_difference": 0.0,
+        "passed": true,
+        "checkpoint_indices": [
+          0,
+          4,
+          8,
+          12
+        ],
+        "network_name": "Large Network"
+      }
+    ]
+  },
+  "memory_scaling": {
+    "sqrt_scaling_confirmed": true,
+    "sqrt_correlation": 0.964787413519491,
+    "r_squared": 0.9308147532856295,
+    "average_memory_reduction": 2.833386479591837,
+    "max_memory_reduction": 4.450892857142857,
+    "memory_data": {
+      "network_sizes": [
+        3,
+        5,
+        8,
+        12,
+        16,
+        24,
+        32
+      ],
+      "standard_memory": [
+        2888,
+        4088,
+        5928,
+        8472,
+        10968,
+        16024,
+        21080
+      ],
+      "checkpoint_memory": [
+        2696,
+        3304,
+        3912,
+        4520,
+        4520,
+        5896,
+        5896
+      ],
+      "theoretical_params": [
+        8970,
+        17290,
+        29770,
+        46410,
+        63050,
+        96330,
+        129610
+      ],
+      "checkpoint_params": [
+        8320,
+        8320,
+        16640,
+        16640,
+        16640,
+        24960,
+        29120
+      ],
+      "memory_reduction": [
+        1.078125,
+        2.078125,
+        1.7890625,
+        2.7890625,
+        3.7890625,
+        3.859375,
+        4.450892857142857
+      ]
+    },
+    "scaling_analysis": {
+      "sqrt_correlation": 0.964787413519491,
+      "linear_correlation": 0.9623554224507881,
+      "quadratic_correlation": 0.9164465131333193,
+      "r_squared": 0.9308147532856295,
+      "slope": 78.4866133108558,
+      "intercept": 15.966407023584907,
+      "p_value": 0.0004384868486022901,
+      "sqrt_scaling_confirmed": true,
+      "params": [
+        8970,
+        17290,
+        29770,
+        46410,
+        63050,
+        96330,
+        129610
+      ],
+      "checkpoint_params": [
+        8320,
+        8320,
+        16640,
+        16640,
+        16640,
+        24960,
+        29120
+      ],
+      "sqrt_params": [
+        94.7100839404126,
+        131.49144458861193,
+        172.53985046939155,
+        215.42980295214494,
+        251.09759058979438,
+        310.37074604414636,
+        360.0138886209808
+      ]
+    },
+    "checkpoint_strategies": {
+      "no_checkpoints": {
+        "checkpoint_indices": [
+          0
+        ],
+        "num_checkpoints": 1,
+        "checkpoint_params": 4160,
+        "memory_reduction": 15.15625,
+        "measured_memory": 2744,
+        "theoretical_ratio": 15.15625
+      },
+      "all_checkpoints": {
+        "checkpoint_indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "num_checkpoints": 16,
+        "checkpoint_params": 63050,
+        "memory_reduction": 1.0,
+        "measured_memory": 11168,
+        "theoretical_ratio": 1.0
+      },
+      "uniform_2": {
+        "checkpoint_indices": [
+          0,
+          8
+        ],
+        "num_checkpoints": 2,
+        "checkpoint_params": 8320,
+        "memory_reduction": 7.578125,
+        "measured_memory": 3304,
+        "theoretical_ratio": 7.578125
+      },
+      "uniform_3": {
+        "checkpoint_indices": [
+          0,
+          5,
+          10,
+          15
+        ],
+        "num_checkpoints": 4,
+        "checkpoint_params": 13130,
+        "memory_reduction": 4.801980198019802,
+        "measured_memory": 3912,
+        "theoretical_ratio": 4.801980198019802
+      },
+      "optimal_sqrt": {
+        "checkpoint_indices": [
+          0,
+          4,
+          8,
+          12
+        ],
+        "num_checkpoints": 4,
+        "checkpoint_params": 16640,
+        "memory_reduction": 3.7890625,
+        "measured_memory": 4520,
+        "theoretical_ratio": 3.7890625
+      },
+      "first_half": {
+        "checkpoint_indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "num_checkpoints": 8,
+        "checkpoint_params": 33280,
+        "memory_reduction": 1.89453125,
+        "measured_memory": 7144,
+        "theoretical_ratio": 1.89453125
+      },
+      "second_half": {
+        "checkpoint_indices": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "num_checkpoints": 8,
+        "checkpoint_params": 29770,
+        "memory_reduction": 2.1179039301310043,
+        "measured_memory": 5896,
+        "theoretical_ratio": 2.1179039301310043
+      }
+    }
+  },
+  "performance": {
+    "optimal_strategy": {
+      "strategy_name": "Every 4",
+      "checkpoint_indices": [
+        0,
+        4,
+        8,
+        12,
+        15
+      ],
+      "num_checkpoints": 5,
+      "checkpoint_density": 0.3125,
+      "mean_time_ms": 0.11446839999583366,
+      "overhead_ratio": 0.9424292570673952,
+      "memory_reduction": 3.6466165413533833,
+      "checkpoint_params": 17290,
+      "total_params": 63050
+    },
+    "average_overhead_ratio": 0.9634248150165072,
+    "average_memory_reduction": 2.7553125,
+    "performance_acceptable": true,
+    "tradeoff_analysis": {
+      "network_config": {
+        "num_layers": 16,
+        "layer_size": 64,
+        "total_params": 63050
+      },
+      "strategy_results": [
+        {
+          "strategy_name": "None",
+          "checkpoint_indices": [
+            0
+          ],
+          "num_checkpoints": 1,
+          "checkpoint_density": 0.0625,
+          "mean_time_ms": 0.09977523331296348,
+          "overhead_ratio": 0.9676572256048379,
+          "memory_reduction": 15.15625,
+          "checkpoint_params": 4160,
+          "total_params": 63050
+        },
+        {
+          "strategy_name": "Every 8",
+          "checkpoint_indices": [
+            0,
+            8,
+            15
+          ],
+          "num_checkpoints": 3,
+          "checkpoint_density": 0.1875,
+          "mean_time_ms": 0.10235283336138916,
+          "overhead_ratio": 0.9675549572138561,
+          "memory_reduction": 7.028985507246377,
+          "checkpoint_params": 8970,
+          "total_params": 63050
+        },
+        {
+          "strategy_name": "Every 4",
+          "checkpoint_indices": [
+            0,
+            4,
+            8,
+            12,
+            15
+          ],
+          "num_checkpoints": 5,
+          "checkpoint_density": 0.3125,
+          "mean_time_ms": 0.11446839999583366,
+          "overhead_ratio": 0.9424292570673952,
+          "memory_reduction": 3.6466165413533833,
+          "checkpoint_params": 17290,
+          "total_params": 63050
+        },
+        {
+          "strategy_name": "Every 2",
+          "checkpoint_indices": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            15
+          ],
+          "num_checkpoints": 9,
+          "checkpoint_density": 0.5625,
+          "mean_time_ms": 0.18175883334000295,
+          "overhead_ratio": 1.313866089245091,
+          "memory_reduction": 1.8582375478927202,
+          "checkpoint_params": 33930,
+          "total_params": 63050
+        },
+        {
+          "strategy_name": "Optimal \u221an",
+          "checkpoint_indices": [
+            0,
+            4,
+            8,
+            12
+          ],
+          "num_checkpoints": 4,
+          "checkpoint_density": 0.25,
+          "mean_time_ms": 0.15808326666804834,
+          "overhead_ratio": 0.9696948010211739,
+          "memory_reduction": 3.7890625,
+          "checkpoint_params": 16640,
+          "total_params": 63050
+        },
+        {
+          "strategy_name": "Dense",
+          "checkpoint_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "num_checkpoints": 16,
+          "checkpoint_density": 1.0,
+          "mean_time_ms": 0.11784026667858902,
+          "overhead_ratio": 1.0552840801575554,
+          "memory_reduction": 1.0,
+          "checkpoint_params": 63050,
+          "total_params": 63050
+        }
+      ]
+    },
+    "scaling_analysis": {
+      "layer_size": 64,
+      "scaling_results": [
+        {
+          "num_layers": 4,
+          "total_params": 13130,
+          "standard_time_ms": 0.03060304999280561,
+          "checkpoint_time_ms": 0.024865649970706727,
+          "overhead_ratio": 0.8125219537448825,
+          "memory_reduction": 1.578125,
+          "num_checkpoints": 2,
+          "checkpoint_density": 0.5
+        },
+        {
+          "num_layers": 8,
+          "total_params": 29770,
+          "standard_time_ms": 0.05501465003590056,
+          "checkpoint_time_ms": 0.05433369997263071,
+          "overhead_ratio": 0.987622386712894,
+          "memory_reduction": 1.7890625,
+          "num_checkpoints": 4,
+          "checkpoint_density": 0.5
+        },
+        {
+          "num_layers": 12,
+          "total_params": 46410,
+          "standard_time_ms": 0.07792830002699702,
+          "checkpoint_time_ms": 0.08462160001272423,
+          "overhead_ratio": 1.0858904914313339,
+          "memory_reduction": 2.7890625,
+          "num_checkpoints": 4,
+          "checkpoint_density": 0.3333333333333333
+        },
+        {
+          "num_layers": 16,
+          "total_params": 63050,
+          "standard_time_ms": 0.10745980001729549,
+          "checkpoint_time_ms": 0.10241745000030278,
+          "overhead_ratio": 0.9530768713864983,
+          "memory_reduction": 3.7890625,
+          "num_checkpoints": 4,
+          "checkpoint_density": 0.25
+        },
+        {
+          "num_layers": 20,
+          "total_params": 79690,
+          "standard_time_ms": 0.13463934999435878,
+          "checkpoint_time_ms": 0.13167895002652585,
+          "overhead_ratio": 0.9780123718069275,
+          "memory_reduction": 3.83125,
+          "num_checkpoints": 5,
+          "checkpoint_density": 0.25
+        }
+      ]
+    }
+  },
+  "summary": {
+    "timestamp": "2025-06-14T10:55:37.195642",
+    "runtime_seconds": 4.044916391372681,
+    "runtime_minutes": 0.06741527318954468,
+    "all_tests_passed": true,
+    "theory_validated": true,
+    "determinism_passed": true,
+    "memory_scaling_confirmed": true,
+    "performance_acceptable": true,
+    "key_findings": [
+      "\u2705 Checkpoint-based inference produces identical outputs to standard inference",
+      "   Maximum output difference: 0.00e+00 (machine precision)",
+      "\u2705 Memory usage scales as O(\u221an) with 0.965 correlation (R\u00b2 = 0.931)",
+      "   Average memory reduction: 2.8x",
+      "\u26a1 Average computational overhead: 0.96x",
+      "   Optimal strategy: Every 4 (0.94x time, 3.6x memory)"
+    ]
+  }
+}

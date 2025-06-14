@@ -1,0 +1,428 @@
+{
+  "determinism": {
+    "error": "operands could not be broadcast together with shapes (10,) (100,) ",
+    "all_passed": false
+  },
+  "memory_scaling": {
+    "sqrt_scaling_confirmed": true,
+    "sqrt_correlation": 0.964787413519491,
+    "r_squared": 0.9308147532856295,
+    "average_memory_reduction": 2.727900131574484,
+    "max_memory_reduction": 4.353711790393013,
+    "memory_data": {
+      "network_sizes": [
+        3,
+        5,
+        8,
+        12,
+        16,
+        24,
+        32
+      ],
+      "standard_memory": [
+        2888,
+        4088,
+        5928,
+        8472,
+        10968,
+        16024,
+        21080
+      ],
+      "checkpoint_memory": [
+        2200,
+        3480,
+        4104,
+        4712,
+        5232,
+        6624,
+        6624
+      ],
+      "theoretical_params": [
+        8970,
+        17290,
+        29770,
+        46410,
+        63050,
+        96330,
+        129610
+      ],
+      "checkpoint_params": [
+        8970,
+        8970,
+        17290,
+        17290,
+        17290,
+        25610,
+        29770
+      ],
+      "memory_reduction": [
+        1.0,
+        1.9275362318840579,
+        1.7218045112781954,
+        2.6842105263157894,
+        3.6466165413533833,
+        3.761421319796954,
+        4.353711790393013
+      ]
+    },
+    "scaling_analysis": {
+      "sqrt_correlation": 0.964787413519491,
+      "linear_correlation": 0.9623554224507881,
+      "quadratic_correlation": 0.9164465131333193,
+      "r_squared": 0.9308147532856295,
+      "slope": 78.4866133108558,
+      "intercept": 665.9664070235849,
+      "p_value": 0.0004384868486022901,
+      "sqrt_scaling_confirmed": true,
+      "params": [
+        8970,
+        17290,
+        29770,
+        46410,
+        63050,
+        96330,
+        129610
+      ],
+      "checkpoint_params": [
+        8970,
+        8970,
+        17290,
+        17290,
+        17290,
+        25610,
+        29770
+      ],
+      "sqrt_params": [
+        94.7100839404126,
+        131.49144458861193,
+        172.53985046939155,
+        215.42980295214494,
+        251.09759058979438,
+        310.37074604414636,
+        360.0138886209808
+      ]
+    },
+    "checkpoint_strategies": {
+      "no_checkpoints": {
+        "checkpoint_indices": [
+          0
+        ],
+        "num_checkpoints": 1,
+        "checkpoint_params": 4160,
+        "memory_reduction": 15.15625,
+        "measured_memory": 2760,
+        "theoretical_ratio": 15.15625
+      },
+      "all_checkpoints": {
+        "checkpoint_indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "num_checkpoints": 16,
+        "checkpoint_params": 63050,
+        "memory_reduction": 1.0,
+        "measured_memory": 10752,
+        "theoretical_ratio": 1.0
+      },
+      "uniform_2": {
+        "checkpoint_indices": [
+          0,
+          8
+        ],
+        "num_checkpoints": 2,
+        "checkpoint_params": 8320,
+        "memory_reduction": 7.578125,
+        "measured_memory": 3928,
+        "theoretical_ratio": 7.578125
+      },
+      "uniform_3": {
+        "checkpoint_indices": [
+          0,
+          5,
+          10,
+          15
+        ],
+        "num_checkpoints": 4,
+        "checkpoint_params": 13130,
+        "memory_reduction": 4.801980198019802,
+        "measured_memory": 4592,
+        "theoretical_ratio": 4.801980198019802
+      },
+      "optimal_sqrt": {
+        "checkpoint_indices": [
+          0,
+          4,
+          8,
+          12,
+          15
+        ],
+        "num_checkpoints": 5,
+        "checkpoint_params": 17290,
+        "memory_reduction": 3.6466165413533833,
+        "measured_memory": 5232,
+        "theoretical_ratio": 3.6466165413533833
+      },
+      "first_half": {
+        "checkpoint_indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "num_checkpoints": 8,
+        "checkpoint_params": 33280,
+        "memory_reduction": 1.89453125,
+        "measured_memory": 7208,
+        "theoretical_ratio": 1.89453125
+      },
+      "second_half": {
+        "checkpoint_indices": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "num_checkpoints": 8,
+        "checkpoint_params": 29770,
+        "memory_reduction": 2.1179039301310043,
+        "measured_memory": 5416,
+        "theoretical_ratio": 2.1179039301310043
+      }
+    }
+  },
+  "performance": {
+    "optimal_strategy": {
+      "strategy_name": "Every 4",
+      "checkpoint_indices": [
+        0,
+        4,
+        8,
+        12,
+        15
+      ],
+      "num_checkpoints": 5,
+      "checkpoint_density": 0.3125,
+      "mean_time_ms": 0.07415009999552542,
+      "overhead_ratio": 0.7024290846170881,
+      "memory_reduction": 3.6466165413533833,
+      "checkpoint_params": 17290,
+      "total_params": 63050
+    },
+    "average_overhead_ratio": 0.5904574004574041,
+    "average_memory_reduction": 2.6463102420081825,
+    "performance_acceptable": true,
+    "tradeoff_analysis": {
+      "network_config": {
+        "num_layers": 16,
+        "layer_size": 64,
+        "total_params": 63050
+      },
+      "strategy_results": [
+        {
+          "strategy_name": "None",
+          "checkpoint_indices": [
+            0
+          ],
+          "num_checkpoints": 1,
+          "checkpoint_density": 0.0625,
+          "mean_time_ms": 0.0874592999972871,
+          "overhead_ratio": 0.8437638380818265,
+          "memory_reduction": 15.15625,
+          "checkpoint_params": 4160,
+          "total_params": 63050
+        },
+        {
+          "strategy_name": "Every 8",
+          "checkpoint_indices": [
+            0,
+            8,
+            15
+          ],
+          "num_checkpoints": 3,
+          "checkpoint_density": 0.1875,
+          "mean_time_ms": 0.08306316665311897,
+          "overhead_ratio": 0.757913181039371,
+          "memory_reduction": 7.028985507246377,
+          "checkpoint_params": 8970,
+          "total_params": 63050
+        },
+        {
+          "strategy_name": "Every 4",
+          "checkpoint_indices": [
+            0,
+            4,
+            8,
+            12,
+            15
+          ],
+          "num_checkpoints": 5,
+          "checkpoint_density": 0.3125,
+          "mean_time_ms": 0.07415009999552542,
+          "overhead_ratio": 0.7024290846170881,
+          "memory_reduction": 3.6466165413533833,
+          "checkpoint_params": 17290,
+          "total_params": 63050
+        },
+        {
+          "strategy_name": "Every 2",
+          "checkpoint_indices": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            15
+          ],
+          "num_checkpoints": 9,
+          "checkpoint_density": 0.5625,
+          "mean_time_ms": 0.05405886667707212,
+          "overhead_ratio": 0.5110771955307996,
+          "memory_reduction": 1.8582375478927202,
+          "checkpoint_params": 33930,
+          "total_params": 63050
+        },
+        {
+          "strategy_name": "Optimal \u221an",
+          "checkpoint_indices": [
+            0,
+            4,
+            8,
+            12,
+            15
+          ],
+          "num_checkpoints": 5,
+          "checkpoint_density": 0.3125,
+          "mean_time_ms": 0.076706799988339,
+          "overhead_ratio": 0.719517487632118,
+          "memory_reduction": 3.6466165413533833,
+          "checkpoint_params": 17290,
+          "total_params": 63050
+        },
+        {
+          "strategy_name": "Dense",
+          "checkpoint_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "num_checkpoints": 16,
+          "checkpoint_density": 1.0,
+          "mean_time_ms": 0.01784873332629407,
+          "overhead_ratio": 0.1688445639424221,
+          "memory_reduction": 1.0,
+          "checkpoint_params": 63050,
+          "total_params": 63050
+        }
+      ]
+    },
+    "scaling_analysis": {
+      "layer_size": 64,
+      "scaling_results": [
+        {
+          "num_layers": 4,
+          "total_params": 13130,
+          "standard_time_ms": 0.02619309999545294,
+          "checkpoint_time_ms": 0.011244099999885293,
+          "overhead_ratio": 0.4292771761203234,
+          "memory_reduction": 1.463768115942029,
+          "num_checkpoints": 3,
+          "checkpoint_density": 0.75
+        },
+        {
+          "num_layers": 8,
+          "total_params": 29770,
+          "standard_time_ms": 0.04841629999532415,
+          "checkpoint_time_ms": 0.027520049997065144,
+          "overhead_ratio": 0.5684046488418759,
+          "memory_reduction": 1.7218045112781954,
+          "num_checkpoints": 5,
+          "checkpoint_density": 0.625
+        },
+        {
+          "num_layers": 12,
+          "total_params": 46410,
+          "standard_time_ms": 0.07721739999624333,
+          "checkpoint_time_ms": 0.051711700001533245,
+          "overhead_ratio": 0.6696897331954851,
+          "memory_reduction": 2.6842105263157894,
+          "num_checkpoints": 5,
+          "checkpoint_density": 0.4166666666666667
+        },
+        {
+          "num_layers": 16,
+          "total_params": 63050,
+          "standard_time_ms": 0.11005024998667068,
+          "checkpoint_time_ms": 0.06992804998162683,
+          "overhead_ratio": 0.635419274286942,
+          "memory_reduction": 3.6466165413533833,
+          "num_checkpoints": 5,
+          "checkpoint_density": 0.3125
+        },
+        {
+          "num_layers": 20,
+          "total_params": 79690,
+          "standard_time_ms": 0.15689315000031456,
+          "checkpoint_time_ms": 0.10190149999971254,
+          "overhead_ratio": 0.6494961698423942,
+          "memory_reduction": 3.7151515151515153,
+          "num_checkpoints": 6,
+          "checkpoint_density": 0.3
+        }
+      ]
+    }
+  },
+  "summary": {
+    "timestamp": "2025-06-14T10:43:04.442030",
+    "runtime_seconds": 3.764963150024414,
+    "runtime_minutes": 0.06274938583374023,
+    "all_tests_passed": false,
+    "theory_validated": false,
+    "determinism_passed": false,
+    "memory_scaling_confirmed": true,
+    "performance_acceptable": true,
+    "key_findings": [
+      "\u2705 Memory usage scales as O(\u221an) with 0.965 correlation (R\u00b2 = 0.931)",
+      "   Average memory reduction: 2.7x",
+      "\u26a1 Average computational overhead: 0.59x",
+      "   Optimal strategy: Every 4 (0.70x time, 3.6x memory)"
+    ]
+  }
+}

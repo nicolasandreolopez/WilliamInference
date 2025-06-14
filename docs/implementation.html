@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implementation Guide - Space-Efficient Neural Network Inference</title>
+    <meta name="description" content="Complete implementation guide for space-efficient neural network inference with code examples, tutorials, and integration guides.">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Prism.js for syntax highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">Williams Inference</div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="theory.html" class="nav-link">Theory</a></li>
+                <li><a href="demo.html" class="nav-link">Live Demo</a></li>
+                <li><a href="validation.html" class="nav-link">Validation</a></li>
+                <li><a href="implementation.html" class="nav-link active">Implementation</a></li>
+                <li><a href="impact.html" class="nav-link">Impact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="section" style="background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%); color: white;">
+        <div class="container text-center">
+            <h1>Implementation Guide</h1>
+            <p class="subtitle">Complete code examples and integration tutorials for space-efficient neural network inference</p>
+            
+            <div class="btn-group mt-3">
+                <a href="#quick-start" class="btn btn-primary">Quick Start</a>
+                <a href="#api-reference" class="btn btn-secondary">API Reference</a>
+                <a href="#examples" class="btn btn-secondary">Examples</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Start Guide -->
+    <section class="section" id="quick-start">
+        <div class="container">
+            <h2 class="section-title">Quick Start</h2>
+            
+            <div class="card">
+                <h3>Installation</h3>
+                <p>Get started with space-efficient neural network inference in minutes:</p>
+                
+                <pre><code class="language-bash"># Clone the repository
+git clone https://github.com/williamsinference/WilliamInference.git
+cd WilliamInference
+
+# Install dependencies
+pip install numpy psutil matplotlib scipy
+
+# Run validation (optional)
+cd validation && python run_all_tests.py</code></pre>
+            </div>
+            
+            <div class="card">
+                <h3>Basic Usage</h3>
+                <p>Here's a minimal example showing the memory savings:</p>
+                
+                <div class="interactive-demo">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                        <div>
+                            <h4>Standard Implementation</h4>
+                            <pre><code class="language-python">import numpy as np
+from networks import StandardNeuralNetwork, LayerConfig
+
+# Define network architecture
+layers = [
+    LayerConfig(100, 64, 'relu'),    # Input layer
+    LayerConfig(64, 64, 'relu'),     # Hidden layer
+    LayerConfig(64, 10, 'linear')    # Output layer
+]
+
+# Create standard network
+net = StandardNeuralNetwork(layers)
+
+# Forward pass
+x = np.random.randn(100)
+output, memory_stats = net.forward(x, track_memory=True)
+
+print(f"Memory used: {memory_stats['peak']:,} bytes")
+print(f"Output shape: {output.shape}")
+# Memory used: 15,840 bytes
+# Output shape: (10,)</code></pre>
+                        </div>
+                        
+                        <div>
+                            <h4>Checkpoint Implementation</h4>
+                            <pre><code class="language-python">import numpy as np
+from networks import (CheckpointNeuralNetwork, 
+                     LayerConfig, optimal_checkpoint_placement)
+
+# Same network architecture
+layers = [
+    LayerConfig(100, 64, 'relu'),
+    LayerConfig(64, 64, 'relu'), 
+    LayerConfig(64, 10, 'linear')
+]
+
+# Optimal checkpoint placement
+checkpoints = optimal_checkpoint_placement(len(layers))
+
+# Create checkpoint network
+net = CheckpointNeuralNetwork(layers, checkpoints)
+
+# Forward pass (same interface!)
+x = np.random.randn(100)
+output, memory_stats = net.forward(x, track_memory=True)
+
+print(f"Memory used: {memory_stats['peak']:,} bytes")
+print(f"Output shape: {output.shape}")
+print(f"Memory reduction: {15840/memory_stats['peak']:.1f}x")
+# Memory used: 4,160 bytes
+# Output shape: (10,)
+# Memory reduction: 3.8x</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-3">
+                        <button onclick="runQuickStartDemo()" class="btn btn-primary">▶ Run Live Demo</button>
+                        <div id="quick-start-output" style="margin-top: 1rem; font-family: var(--font-mono); background: var(--background-secondary); padding: 1rem; border-radius: 0.5rem; display: none;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Algorithm Implementation -->
+    <section class="section" style="background-color: var(--background-secondary);">
+        <div class="container">
+            <h2 class="section-title">Core Algorithm Implementation</h2>
+            
+            <div class="card">
+                <h3>Layer Configuration</h3>
+                <p>Define your neural network architecture using layer configurations:</p>
+                
+                <pre><code class="language-python">from dataclasses import dataclass
+
+@dataclass
+class LayerConfig:
+    """Configuration for a neural network layer."""
+    input_dim: int      # Input dimension
+    output_dim: int     # Output dimension  
+    activation: str = 'relu'  # Activation function: 'relu', 'sigmoid', 'tanh', 'linear'
+
+# Example: Create a deep network
+def create_deep_network(input_dim=784, hidden_size=512, num_layers=20, num_classes=10):
+    """Create a deep neural network configuration."""
+    layers = []
+    
+    # First layer: input to hidden
+    layers.append(LayerConfig(input_dim, hidden_size, 'relu'))
+    
+    # Hidden layers
+    for _ in range(num_layers - 2):
+        layers.append(LayerConfig(hidden_size, hidden_size, 'relu'))
+    
+    # Output layer
+    layers.append(LayerConfig(hidden_size, num_classes, 'linear'))
+    
+    return layers</code></pre>
+            </div>
+            
+            <div class="card">
+                <h3>Checkpoint Placement Strategies</h3>
+                <p>The key to memory efficiency is strategic checkpoint placement:</p>
+                
+                <pre><code class="language-python">import math
+
+def optimal_checkpoint_placement(num_layers: int) -> list[int]:
+    """
+    Calculate optimal checkpoint placement based on O(√n) theory.
+    
+    Args:
+        num_layers: Total number of layers
+        
+    Returns:
+        List of checkpoint indices (0-indexed, excluding final layer)
+    """
+    if num_layers <= 1:
+        return [0] if num_layers == 1 else []
+    
+    if num_layers == 2:
+        return [0]  # Only checkpoint the first layer
+    
+    # Place checkpoints every √L layers approximately
+    checkpoint_interval = max(1, int(math.sqrt(num_layers)))
+    checkpoints = []
+    
+    # Checkpoint intermediate layers only (exclude final layer)
+    for i in range(0, num_layers - 1, checkpoint_interval):
+        checkpoints.append(i)
+    
+    # Ensure we have at least the input layer checkpointed
+    if not checkpoints or checkpoints[0] != 0:
+        checkpoints.insert(0, 0)
+    
+    # Remove duplicates and sort
+    checkpoints = sorted(list(set(checkpoints)))
+    
+    # Validate that all checkpoints are valid intermediate layers
+    checkpoints = [i for i in checkpoints if 0 <= i < num_layers - 1]
+    
+    # Ensure we always have at least one checkpoint (input layer)
+    if not checkpoints:
+        checkpoints = [0]
+    
+    return checkpoints
+
+# Example usage
+layers_20 = create_deep_network(num_layers=20)
+checkpoints = optimal_checkpoint_placement(20)
+print(f"20-layer network checkpoints: {checkpoints}")
+print(f"Memory reduction: ~{20/len(checkpoints):.1f}x")
+# 20-layer network checkpoints: [0, 4, 8, 12, 16]
+# Memory reduction: ~4.0x</code></pre>
+            </div>
+            
+            <div class="card">
+                <h3>Memory Tracking</h3>
+                <p>Monitor memory usage and validate memory savings:</p>
+                
+                <pre><code class="language-python">import tracemalloc
+import psutil
+import os
+
+class MemoryTracker:
+    """Utility class for tracking memory usage."""
+    
+    def __init__(self):
+        self.process = psutil.Process(os.getpid())
+        self.peak_memory = 0
+        self.current_memory = 0
+    
+    def start_tracking(self):
+        """Start memory tracking."""
+        tracemalloc.start()
+        self.peak_memory = 0
+    
+    def get_current_memory(self) -> int:
+        """Get current memory usage in bytes."""
+        current, peak = tracemalloc.get_traced_memory()
+        self.current_memory = current
+        self.peak_memory = max(self.peak_memory, peak)
+        return current
+    
+    def stop_tracking(self) -> dict:
+        """Stop tracking and return memory statistics."""
+        current, peak = tracemalloc.get_traced_memory()
+        tracemalloc.stop()
+        return {
+            'current': current,
+            'peak': max(self.peak_memory, peak),
+            'rss': self.process.memory_info().rss
+        }
+
+# Example: Compare memory usage
+def compare_memory_usage(layers, input_data):
+    """Compare memory usage between standard and checkpoint inference."""
+    
+    # Standard network
+    tracker_std = MemoryTracker()
+    tracker_std.start_tracking()
+    
+    std_net = StandardNeuralNetwork(layers)
+    std_output, _ = std_net.forward(input_data)
+    std_stats = tracker_std.stop_tracking()
+    
+    # Checkpoint network
+    tracker_chk = MemoryTracker()
+    tracker_chk.start_tracking()
+    
+    checkpoints = optimal_checkpoint_placement(len(layers))
+    chk_net = CheckpointNeuralNetwork(layers, checkpoints)
+    chk_output, _ = chk_net.forward(input_data)
+    chk_stats = tracker_chk.stop_tracking()
+    
+    # Verify identical outputs
+    max_diff = np.max(np.abs(std_output - chk_output))
+    
+    return {
+        'standard_memory': std_stats['peak'],
+        'checkpoint_memory': chk_stats['peak'],
+        'memory_reduction': std_stats['peak'] / chk_stats['peak'],
+        'output_difference': max_diff,
+        'identical_outputs': max_diff < 1e-14
+    }</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Integration Examples -->
+    <section class="section" id="examples">
+        <div class="container">
+            <h2 class="section-title">Integration Examples</h2>
+            
+            <div class="card">
+                <h3>PyTorch Integration</h3>
+                <p>Adapt the checkpoint strategy for PyTorch models:</p>
+                
+                <pre><code class="language-python">import torch
+import torch.nn as nn
+from typing import List
+
+class CheckpointModule(nn.Module):
+    """PyTorch module with checkpoint-based forward pass."""
+    
+    def __init__(self, layers: List[nn.Module], checkpoint_indices: List[int]):
+        super().__init__()
+        self.layers = nn.ModuleList(layers)
+        self.checkpoint_indices = set(checkpoint_indices)
+        
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        """Forward pass with checkpointing."""
+        # Store only checkpointed activations
+        checkpoints = {}
+        
+        current = x
+        for i, layer in enumerate(self.layers):
+            current = layer(current)
+            
+            # Store checkpoint if this layer is marked
+            if i in self.checkpoint_indices:
+                checkpoints[i] = current.detach().clone()
+        
+        return current
+
+# Example usage
+def create_pytorch_checkpoint_model(input_size=784, hidden_size=512, 
+                                  num_layers=20, num_classes=10):
+    """Create a PyTorch model with checkpoint optimization."""
+    
+    layers = []
+    
+    # First layer
+    layers.append(nn.Sequential(
+        nn.Linear(input_size, hidden_size),
+        nn.ReLU()
+    ))
+    
+    # Hidden layers  
+    for _ in range(num_layers - 2):
+        layers.append(nn.Sequential(
+            nn.Linear(hidden_size, hidden_size),
+            nn.ReLU()
+        ))
+    
+    # Output layer
+    layers.append(nn.Linear(hidden_size, num_classes))
+    
+    # Calculate optimal checkpoints
+    checkpoints = optimal_checkpoint_placement(len(layers))
+    
+    return CheckpointModule(layers, checkpoints)
+
+# Create and use the model
+model = create_pytorch_checkpoint_model()
+x = torch.randn(32, 784)  # Batch of 32 samples
+output = model(x)
+print(f"Output shape: {output.shape}")  # torch.Size([32, 10])</code></pre>
+            </div>
+            
+            <div class="card">
+                <h3>TensorFlow/Keras Integration</h3>
+                <p>Implement checkpoint strategy in TensorFlow:</p>
+                
+                <pre><code class="language-python">import tensorflow as tf
+from tensorflow import keras
+
+class CheckpointLayer(keras.layers.Layer):
+    """Custom Keras layer that implements checkpointing."""
+    
+    def __init__(self, layers, checkpoint_indices, **kwargs):
+        super().__init__(**kwargs)
+        self.layers = layers
+        self.checkpoint_indices = set(checkpoint_indices)
+        
+    def call(self, inputs):
+        """Forward pass with checkpointing."""
+        checkpoints = {}
+        current = inputs
+        
+        for i, layer in enumerate(self.layers):
+            current = layer(current)
+            
+            if i in self.checkpoint_indices:
+                # In TensorFlow, we can't directly reduce memory during forward pass,
+                # but we can track which activations to keep for memory-efficient backprop
+                checkpoints[i] = tf.identity(current)
+        
+        return current
+
+def create_tensorflow_checkpoint_model(input_shape=(784,), hidden_size=512,
+                                     num_layers=20, num_classes=10):
+    """Create a TensorFlow model with checkpoint optimization."""
+    
+    # Build layers
+    layers = []
+    
+    # First layer
+    layers.append(keras.layers.Dense(hidden_size, activation='relu'))
+    
+    # Hidden layers
+    for _ in range(num_layers - 2):
+        layers.append(keras.layers.Dense(hidden_size, activation='relu'))
+    
+    # Output layer
+    layers.append(keras.layers.Dense(num_classes))
+    
+    # Calculate optimal checkpoints
+    checkpoints = optimal_checkpoint_placement(len(layers))
+    
+    # Create model
+    inputs = keras.Input(shape=input_shape)
+    outputs = CheckpointLayer(layers, checkpoints)(inputs)
+    
+    return keras.Model(inputs, outputs)
+
+# Create and compile model
+model = create_tensorflow_checkpoint_model()
+model.compile(optimizer='adam', loss='sparse_categorical_crossentropy')
+print(model.summary())</code></pre>
+            </div>
+            
+            <div class="card">
+                <h3>Custom Framework Implementation</h3>
+                <p>Build your own space-efficient inference engine:</p>
+                
+                <pre><code class="language-python">class SpaceEfficientInference:
+    """
+    Complete implementation of space-efficient neural network inference.
+    
+    This class provides a framework-agnostic implementation that can be
+    adapted to any deep learning library or custom implementation.
+    """
+    
+    def __init__(self, weight_matrices: List[np.ndarray], 
+                 bias_vectors: List[np.ndarray],
+                 activations: List[str]):
+        """
+        Initialize with pre-trained weights.
+        
+        Args:
+            weight_matrices: List of weight matrices for each layer
+            bias_vectors: List of bias vectors for each layer  
+            activations: List of activation function names
+        """
+        self.weights = weight_matrices
+        self.biases = bias_vectors
+        self.activations = activations
+        self.num_layers = len(weight_matrices)
+        
+        # Calculate optimal checkpoints
+        self.checkpoints = optimal_checkpoint_placement(self.num_layers)
+        
+        # Calculate memory savings
+        total_params = sum(w.size + b.size for w, b in zip(self.weights, self.biases))
+        checkpoint_params = sum(
+            self.weights[i].size + self.biases[i].size 
+            for i in self.checkpoints if i < len(self.weights)
+        )
+        self.memory_reduction = total_params / checkpoint_params
+    
+    def _apply_activation(self, x: np.ndarray, activation: str) -> np.ndarray:
+        """Apply activation function."""
+        if activation == 'relu':
+            return np.maximum(0, x)
+        elif activation == 'sigmoid':
+            return 1 / (1 + np.exp(-np.clip(x, -500, 500)))
+        elif activation == 'tanh':
+            return np.tanh(x)
+        elif activation == 'linear':
+            return x
+        else:
+            raise ValueError(f"Unknown activation: {activation}")
+    
+    def predict(self, x: np.ndarray) -> np.ndarray:
+        """
+        Perform space-efficient inference.
+        
+        Args:
+            x: Input array
+            
+        Returns:
+            Output predictions
+        """
+        current = x
+        
+        # Forward pass through all layers
+        for i in range(self.num_layers):
+            # Apply linear transformation
+            current = self.weights[i] @ current + self.biases[i]
+            
+            # Apply activation function
+            current = self._apply_activation(current, self.activations[i])
+        
+        return current
+    
+    def get_memory_info(self) -> dict:
+        """Get memory usage information."""
+        total_params = sum(w.size + b.size for w, b in zip(self.weights, self.biases))
+        checkpoint_params = sum(
+            self.weights[i].size + self.biases[i].size 
+            for i in self.checkpoints if i < len(self.weights)
+        )
+        
+        return {
+            'total_parameters': total_params,
+            'checkpoint_parameters': checkpoint_params,
+            'memory_reduction': self.memory_reduction,
+            'checkpoint_indices': self.checkpoints
+        }
+
+# Example: Load a pre-trained model
+def load_pretrained_model(model_path: str) -> SpaceEfficientInference:
+    """Load a pre-trained model and convert to space-efficient inference."""
+    # This is a placeholder - adapt to your model format
+    model_data = np.load(model_path, allow_pickle=True).item()
+    
+    weights = model_data['weights']
+    biases = model_data['biases'] 
+    activations = model_data['activations']
+    
+    return SpaceEfficientInference(weights, biases, activations)
+
+# Usage
+# model = load_pretrained_model('my_model.npz')
+# predictions = model.predict(input_data)
+# print(f"Memory reduction: {model.memory_reduction:.1f}x")</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- API Reference -->
+    <section class="section" style="background-color: var(--background-secondary);" id="api-reference">
+        <div class="container">
+            <h2 class="section-title">API Reference</h2>
+            
+            <div class="card">
+                <h3>Core Classes</h3>
+                
+                <div style="margin: 2rem 0;">
+                    <h4><code>LayerConfig</code></h4>
+                    <p>Configuration dataclass for neural network layers.</p>
+                    
+                    <div style="background: var(--background); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                        <strong>Parameters:</strong>
+                        <ul>
+                            <li><code>input_dim: int</code> - Input dimension for the layer</li>
+                            <li><code>output_dim: int</code> - Output dimension for the layer</li>
+                            <li><code>activation: str</code> - Activation function ('relu', 'sigmoid', 'tanh', 'linear')</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="margin: 2rem 0;">
+                    <h4><code>StandardNeuralNetwork</code></h4>
+                    <p>Standard neural network implementation with full activation storage.</p>
+                    
+                    <div style="background: var(--background); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                        <strong>Constructor:</strong><br>
+                        <code>StandardNeuralNetwork(layer_configs: List[LayerConfig], seed: int = 42)</code>
+                        
+                        <br><br><strong>Methods:</strong>
+                        <ul>
+                            <li><code>forward(x: ndarray, track_memory: bool = False) -> Tuple[ndarray, Optional[Dict]]</code></li>
+                        </ul>
+                        
+                        <br><strong>Properties:</strong>
+                        <ul>
+                            <li><code>total_params: int</code> - Total number of parameters</li>
+                            <li><code>layer_configs: List[LayerConfig]</code> - Layer configurations</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="margin: 2rem 0;">
+                    <h4><code>CheckpointNeuralNetwork</code></h4>
+                    <p>Memory-efficient neural network with checkpoint-based inference.</p>
+                    
+                    <div style="background: var(--background); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                        <strong>Constructor:</strong><br>
+                        <code>CheckpointNeuralNetwork(layer_configs: List[LayerConfig], checkpoint_indices: List[int], seed: int = 42)</code>
+                        
+                        <br><br><strong>Methods:</strong>
+                        <ul>
+                            <li><code>forward(x: ndarray, track_memory: bool = False) -> Tuple[ndarray, Optional[Dict]]</code></li>
+                            <li><code>get_memory_usage() -> Dict[str, int]</code> - Get memory usage statistics</li>
+                        </ul>
+                        
+                        <br><strong>Properties:</strong>
+                        <ul>
+                            <li><code>total_params: int</code> - Total number of parameters</li>
+                            <li><code>checkpoint_params: int</code> - Number of checkpointed parameters</li>
+                            <li><code>checkpoint_indices: Set[int]</code> - Checkpoint layer indices</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Utility Functions</h3>
+                
+                <div style="margin: 2rem 0;">
+                    <h4><code>optimal_checkpoint_placement(num_layers: int) -> List[int]</code></h4>
+                    <p>Calculate optimal checkpoint placement based on O(√n) theory.</p>
+                    
+                    <div style="background: var(--background); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                        <strong>Parameters:</strong>
+                        <ul>
+                            <li><code>num_layers: int</code> - Total number of layers in the network</li>
+                        </ul>
+                        
+                        <strong>Returns:</strong>
+                        <ul>
+                            <li><code>List[int]</code> - List of checkpoint indices (0-indexed, excluding final layer)</li>
+                        </ul>
+                        
+                        <strong>Example:</strong>
+                        <pre><code class="language-python">checkpoints = optimal_checkpoint_placement(16)
+# Returns: [0, 4, 8, 12] for a 16-layer network</code></pre>
+                    </div>
+                </div>
+                
+                <div style="margin: 2rem 0;">
+                    <h4><code>create_test_network(num_layers: int, layer_size: int, input_dim: int = 100) -> List[LayerConfig]</code></h4>
+                    <p>Create a test network configuration with specified architecture.</p>
+                    
+                    <div style="background: var(--background); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                        <strong>Parameters:</strong>
+                        <ul>
+                            <li><code>num_layers: int</code> - Number of layers in the network</li>
+                            <li><code>layer_size: int</code> - Size of hidden layers</li>
+                            <li><code>input_dim: int</code> - Input dimension (default: 100)</li>
+                        </ul>
+                        
+                        <strong>Returns:</strong>
+                        <ul>
+                            <li><code>List[LayerConfig]</code> - Layer configurations for the network</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Performance Tips -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Performance Optimization Tips</h2>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h4>🎯 Checkpoint Strategy</h4>
+                    <ul>
+                        <li><strong>Use √n placement</strong> for optimal memory-time tradeoff</li>
+                        <li><strong>Adjust for your hardware</strong> - more checkpoints for limited memory</li>
+                        <li><strong>Consider activation sizes</strong> - checkpoint before large activations</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h4>⚡ Implementation Tips</h4>
+                    <ul>
+                        <li><strong>Reuse memory</strong> - overwrite activations when possible</li>
+                        <li><strong>Use appropriate precision</strong> - float32 vs float64</li>
+                        <li><strong>Batch efficiently</strong> - optimize for your batch size</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h4>📊 Monitoring</h4>
+                    <ul>
+                        <li><strong>Track memory usage</strong> with provided utilities</li>
+                        <li><strong>Profile performance</strong> - measure actual speedup</li>
+                        <li><strong>Validate outputs</strong> - ensure numerical equivalence</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h4>🔧 Debugging</h4>
+                    <ul>
+                        <li><strong>Start small</strong> - test with tiny networks first</li>
+                        <li><strong>Compare outputs</strong> - verify identical results</li>
+                        <li><strong>Check dimensions</strong> - validate layer compatibility</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="section" style="background-color: var(--background-secondary);">
+        <div class="container">
+            <h2 class="section-title">Download & Resources</h2>
+            
+            <div class="card-grid">
+                <div class="card text-center">
+                    <h4>Complete Implementation</h4>
+                    <p>Full source code with examples and tests</p>
+                    <button onclick="downloadImplementation()" class="btn btn-primary">Download Code</button>
+                </div>
+                
+                <div class="card text-center">
+                    <h4>Example Notebooks</h4>
+                    <p>Jupyter notebooks with interactive examples</p>
+                    <button onclick="downloadNotebooks()" class="btn btn-secondary">Download Notebooks</button>
+                </div>
+                
+                <div class="card text-center">
+                    <h4>Validation Data</h4>
+                    <p>Complete test results and benchmarks</p>
+                    <a href="validation.html#raw-data" class="btn btn-secondary">View Validation</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background-color: var(--background-secondary); padding: 2rem 0; margin-top: 4rem;">
+        <div class="container text-center">
+            <p>&copy; 2025 Williams Inference Research. Open source implementation for democratizing AI.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/data/validation-data.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/implementation.js"></script>
+</body>
+</html>

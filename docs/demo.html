@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Demo - Space-Efficient Neural Network Inference</title>
+    <meta name="description" content="Interactive demonstrations of O(√n) memory scaling, checkpoint strategies, and real-world model compatibility.">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">Williams Inference</div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="theory.html" class="nav-link">Theory</a></li>
+                <li><a href="demo.html" class="nav-link active">Live Demo</a></li>
+                <li><a href="validation.html" class="nav-link">Validation</a></li>
+                <li><a href="implementation.html" class="nav-link">Implementation</a></li>
+                <li><a href="impact.html" class="nav-link">Impact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="section" style="background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%); color: white;">
+        <div class="container text-center">
+            <h1>Interactive Demonstrations</h1>
+            <p class="subtitle">Experience the power of O(√n) memory scaling with live calculations and visualizations</p>
+        </div>
+    </section>
+
+    <!-- Demo 1: Memory Usage Visualizer -->
+    <section class="section" id="memory-visualizer">
+        <div class="container">
+            <h2 class="section-title">Memory Usage Visualizer</h2>
+            
+            <div class="interactive-demo">
+                <h3>Adjust Network Size and See Memory Scaling</h3>
+                
+                <div class="slider-container">
+                    <label for="network-size">Network Size: <span id="network-size-display">16</span> layers</label>
+                    <input type="range" id="network-size" class="slider" min="3" max="50" value="16">
+                </div>
+                
+                <div class="slider-container">
+                    <label for="layer-size">Layer Size: <span id="layer-size-display">100</span> neurons</label>
+                    <input type="range" id="layer-size" class="slider" min="50" max="500" step="10" value="100">
+                </div>
+                
+                <div class="card-grid" style="grid-template-columns: 1fr 1fr;">
+                    <div class="card text-center">
+                        <h4>Standard Inference</h4>
+                        <div style="font-size: 2rem; color: var(--error-color); margin: 1rem 0;">
+                            <span id="standard-memory">0</span> MB
+                        </div>
+                        <p>Linear O(n) scaling</p>
+                    </div>
+                    
+                    <div class="card text-center">
+                        <h4>Checkpoint Inference</h4>
+                        <div style="font-size: 2rem; color: var(--success-color); margin: 1rem 0;">
+                            <span id="checkpoint-memory">0</span> MB
+                        </div>
+                        <p>Square-root O(√n) scaling</p>
+                    </div>
+                </div>
+                
+                <div class="card text-center">
+                    <h4>Memory Reduction</h4>
+                    <div style="font-size: 3rem; color: var(--accent-color); margin: 1rem 0;">
+                        <span id="memory-reduction">0</span>×
+                    </div>
+                    <p>With <span id="checkpoint-count">0</span> strategic checkpoints</p>
+                </div>
+                
+                <div class="chart-container">
+                    <canvas id="scaling-chart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo 2: Checkpoint Strategy Explorer -->
+    <section class="section" style="background-color: var(--background-secondary);">
+        <div class="container">
+            <h2 class="section-title">Checkpoint Strategy Explorer</h2>
+            
+            <div class="interactive-demo">
+                <h3>Design Your Own Checkpoint Strategy</h3>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <div>
+                        <h4>Network Visualization</h4>
+                        <div id="network-diagram" style="border: 1px solid var(--border-color); border-radius: 0.5rem; padding: 1rem; min-height: 300px; background: white;">
+                            <!-- Network diagram will be drawn here -->
+                        </div>
+                        
+                        <div style="margin-top: 1rem;">
+                            <button id="add-checkpoint" class="btn btn-primary">Add Checkpoint</button>
+                            <button id="remove-checkpoint" class="btn btn-secondary">Remove Last</button>
+                            <button id="optimal-strategy" class="btn btn-secondary">Use Optimal √n</button>
+                            <button id="clear-checkpoints" class="btn btn-secondary">Clear All</button>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4>Strategy Metrics</h4>
+                        <div class="card">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <div>
+                                    <strong>Checkpoints:</strong>
+                                    <div id="strategy-checkpoints" style="font-size: 1.5rem; color: var(--primary-color);">0</div>
+                                </div>
+                                <div>
+                                    <strong>Memory Usage:</strong>
+                                    <div id="strategy-memory" style="font-size: 1.5rem; color: var(--secondary-color);">0 MB</div>
+                                </div>
+                                <div>
+                                    <strong>Reduction:</strong>
+                                    <div id="strategy-reduction" style="font-size: 1.5rem; color: var(--accent-color);">1×</div>
+                                </div>
+                                <div>
+                                    <strong>Recomputation:</strong>
+                                    <div id="strategy-recomp" style="font-size: 1.5rem; color: var(--warning-color);">0</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <h5>Checkpoint Placement</h5>
+                            <div id="checkpoint-list" style="max-height: 150px; overflow-y: auto;">
+                                <!-- Checkpoint list will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo 3: Real-World Model Calculator -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Real-World Model Calculator</h2>
+            
+            <div class="interactive-demo">
+                <h3>Can Your Hardware Run These AI Models?</h3>
+                
+                <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem;">
+                    <div>
+                        <h4>Select Model</h4>
+                        <div class="card">
+                            <div style="margin-bottom: 1rem;">
+                                <label>
+                                    <input type="radio" name="model" value="custom"> Custom Model
+                                </label>
+                            </div>
+                            <div id="custom-inputs" style="display: none;">
+                                <div style="margin-bottom: 1rem;">
+                                    <label for="custom-params">Parameters:</label>
+                                    <input type="number" id="custom-params" style="width: 100%; padding: 0.5rem; margin-top: 0.25rem;">
+                                    <small>Enter in millions (e.g., 1000 for 1B parameters)</small>
+                                </div>
+                            </div>
+                            
+                            <div style="margin-bottom: 1rem;">
+                                <label>
+                                    <input type="radio" name="model" value="117000000"> GPT-2 Small (117M)
+                                </label>
+                            </div>
+                            <div style="margin-bottom: 1rem;">
+                                <label>
+                                    <input type="radio" name="model" value="774000000"> GPT-2 Large (774M)
+                                </label>
+                            </div>
+                            <div style="margin-bottom: 1rem;">
+                                <label>
+                                    <input type="radio" name="model" value="175000000000" checked> GPT-3 (175B)
+                                </label>
+                            </div>
+                            <div style="margin-bottom: 1rem;">
+                                <label>
+                                    <input type="radio" name="model" value="540000000000"> PaLM (540B)
+                                </label>
+                            </div>
+                            <div style="margin-bottom: 1rem;">
+                                <label>
+                                    <input type="radio" name="model" value="1000000000000"> Hypothetical (1T)
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <h4 style="margin-top: 2rem;">Your Hardware</h4>
+                        <div class="card">
+                            <label for="available-memory">Available RAM (GB):</label>
+                            <input type="number" id="available-memory" value="16" style="width: 100%; padding: 0.5rem; margin-top: 0.25rem;">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4>Compatibility Results</h4>
+                        <div id="compatibility-results">
+                            <!-- Results will be populated here -->
+                        </div>
+                        
+                        <div class="chart-container" style="margin-top: 2rem;">
+                            <canvas id="comparison-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo 4: Live Scaling Comparison -->
+    <section class="section" style="background-color: var(--background-secondary);">
+        <div class="container">
+            <h2 class="section-title">Memory Scaling Comparison</h2>
+            
+            <div class="interactive-demo">
+                <h3>Compare Different Scaling Laws</h3>
+                
+                <div class="card">
+                    <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                        <label>
+                            <input type="checkbox" id="show-linear" checked> 
+                            <span style="color: var(--error-color);">■</span> O(n) Linear
+                        </label>
+                        <label>
+                            <input type="checkbox" id="show-sqrt" checked> 
+                            <span style="color: var(--success-color);">■</span> O(√n) Our Method
+                        </label>
+                        <label>
+                            <input type="checkbox" id="show-log"> 
+                            <span style="color: var(--primary-color);">■</span> O(log n) Theoretical Best
+                        </label>
+                        <label>
+                            <input type="checkbox" id="show-data" checked> 
+                            <span style="color: var(--accent-color);">●</span> Our Validation Data
+                        </label>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <canvas id="scaling-comparison-chart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="card-grid" style="margin-top: 2rem;">
+                    <div class="card text-center">
+                        <h4>At 1B Parameters</h4>
+                        <p>Linear: <span style="color: var(--error-color);">4.0 GB</span></p>
+                        <p>Our Method: <span style="color: var(--success-color);">125 MB</span></p>
+                        <p>Reduction: <span style="color: var(--accent-color);">32×</span></p>
+                    </div>
+                    
+                    <div class="card text-center">
+                        <h4>At 175B Parameters</h4>
+                        <p>Linear: <span style="color: var(--error-color);">700 GB</span></p>
+                        <p>Our Method: <span style="color: var(--success-color);">1.7 GB</span></p>
+                        <p>Reduction: <span style="color: var(--accent-color);">412×</span></p>
+                    </div>
+                    
+                    <div class="card text-center">
+                        <h4>At 1T Parameters</h4>
+                        <p>Linear: <span style="color: var(--error-color);">4 TB</span></p>
+                        <p>Our Method: <span style="color: var(--success-color);">8 GB</span></p>
+                        <p>Reduction: <span style="color: var(--accent-color);">500×</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="section">
+        <div class="container text-center">
+            <h2>Ready to Dive Deeper?</h2>
+            <p class="mb-4">Explore our empirical validation, implementation details, or real-world impact.</p>
+            
+            <div class="btn-group">
+                <a href="validation.html" class="btn btn-primary">View Validation Results</a>
+                <a href="implementation.html" class="btn btn-secondary">Implementation Guide</a>
+                <a href="impact.html" class="btn btn-secondary">Real-World Impact</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background-color: var(--background-secondary); padding: 2rem 0; margin-top: 4rem;">
+        <div class="container text-center">
+            <p>&copy; 2025 Williams Inference Research. Democratizing AI through efficient inference.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/data/validation-data.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/demo.js"></script>
+</body>
+</html>
