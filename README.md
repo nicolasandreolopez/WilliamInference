@@ -17,8 +17,7 @@ This repository contains the mathematical proof, empirical validation, and inter
 
 ## 🌐 Live Website
 
-Visit our interactive website: **[williamsinference.github.io](https://williamsinference.github.io)**
-
+Visit our interactive website: https://nimishchaudhari.github.io/WilliamInference
 ### Website Features
 
 - **Interactive Demos**: Live memory calculators and scaling visualizations
